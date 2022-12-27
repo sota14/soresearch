@@ -1,6 +1,21 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import Head from "next/head";
+import "tailwindcss/tailwind.css";
+import adobeLoader from "../adobeLoader";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  useEffect(() => {
+    if (process.browser) adobeLoader(document);
+  }, []);
+
+  return (
+    <>
+      <Head>
+        <title>SO RESEARCH</title>
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }
