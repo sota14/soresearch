@@ -64,10 +64,10 @@ const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
             src={getLocalImage(page.properties.slug.rich_text)}
           ></img> */}
           {/* image */}
-          <div className="">
+          <div className="flex justify-center">
             {" "}
             <Image
-              className="w-full static w-full h-auto"
+              className="static justify-center"
               src={getCover(page.cover)}
               alt=""
               objectFit="cover"
