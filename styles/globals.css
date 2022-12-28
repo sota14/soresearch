@@ -36,9 +36,13 @@ body {
 /* adobefont対応のため */
 html {
   visibility: hidden;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
 }
 html.wf-active {
   visibility: visible;
+  -webkit-backface-visibility:visible;
+  backface-visibility:visible;
 }
 
 /* body {
