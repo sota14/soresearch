@@ -4,9 +4,9 @@ import { LayoutProps } from "../types/types";
 
 const Introduction: FC = () => {
   return (
-    <div className="m-16 grid grid-cols-2 items-center">
-      <img src="/profile_so.jpg"></img>
-      <article className="pl-6">
+    <div className="m-16 grid lg:grid-cols-2">
+      <img src="/profile_so.jpg" className="object-cover"></img>
+      <article className="lg:pl-6 pt-2 lg:pt-0">
         <h2 className="font-bold text-xl futura">
           SO<span className="ml-2">ソー</span>
         </h2>

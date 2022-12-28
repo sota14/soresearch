@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { FC, useState } from "react";
 import { LayoutProps } from "../types/types";
 import Menu from "./Menu";
+import { motion } from "framer-motion";
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -22,11 +23,27 @@ const Layout: FC<LayoutProps> = ({ children }) => {
             SO RESEARCH
           </h1>
         </Link>
-        <button className="globalmenu m-2" onClick={() => setIsOpenMenu(true)}>
-          <span className="xs:text-sm text-xl font-bold futura">MENU</span>
+        <button
+          className="globalmenu m-2"
+          onClick={() => setIsOpenMenu(!isOpenMenu)}
+        >
+          <span className="xs:text-sm text-xl font-bold futura">
+            {!isOpenMenu ? "MENU" : "CLOSE"}
+          </span>
         </button>
       </header>
-      <main className="pt-12 h-screen">{children}</main>
+      {/* <main className="pt-12 h-screen">{children}</main> */}
+      <motion.main
+        initial={{ opacity: 0, y: -500 }} // 初期状態
+        animate={{ opacity: 1, y: 0 }} // マウント時
+        exit={{ y: 1000, transition: { duration: 0.5 } }} // アンマウント時
+        transition={{
+          duration: 1,
+        }}
+        className="pt-12 h-screen "
+      >
+        {children}
+      </motion.main>
 
       {isOpenMenu && <Menu close={closeMenuHandler} />}
     </div>
