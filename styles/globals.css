@@ -31,6 +31,7 @@ body {
   font-family: "Noto Sans JP", "游ゴシック体", "YuGothic", "Yu Gothic M", "游ゴシック Medium", "Yu Gothic Medium", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "メイリオ", "Meiryo", "MS ゴシック", "sans-seif";
   color: var(--color1-def);
   scrollbar-width: none;
+  -webkit-tap-highlight-color:transparent;
 }
 
 /* adobefont対応のため */
@@ -64,6 +65,8 @@ select, input, textarea {
   color: var(--color1-def);
   background-color: transparent;
   border: 1px solid var(--color1-def);
+    -webkit-appearance: none;
+    appearance: none;
 }
 input:focus, select:focus, textarea:focus{
   outline:none;
@@ -100,7 +103,7 @@ input:focus, select:focus, textarea:focus{
 
 /* 問い合わせフォームのプレースホルダ */
 ::placeholder, ::-webkit-input-placeholder {
-  color: var(--color1-def)!important;
+  color: var(--color1-def)!important;-webkit-appearance: none;
 }
 input:focus::-webkit-input-placeholder { color: transparent !important;; }
 input:focus:-moz-placeholder { color:transparent!important; }
