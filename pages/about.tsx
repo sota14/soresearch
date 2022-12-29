@@ -9,16 +9,19 @@ import ContactForm from "../components/ContactForm";
 const About: NextPage = () => {
   return (
     <Layout>
-      <div className="grid grid-rows-2 sm:grid-cols-2 sm:grid-flow-col sm:h-full">
-        <div id="introduction" className="introduction border-b-2 border-white">
+      <div className="sm:grid sm:grid-rows-3 lg:grid-rows-4 sm:grid-cols-2 sm:grid-flow-col sm:h-full">
+        <div
+          id="introduction"
+          className="introduction border-b-2 border-white sm:row-span-2 place-content-center"
+        >
           <Introduction />
         </div>
-        <div id="links" className="link border-b-2 border-white">
+        <div id="links" className="link border-b-2 border-white lg:row-span-2">
           <Links />
         </div>
         <div
           id="contact"
-          className="contact row-span-2 col-span-1 border-l-2 border-b-2 border-white w-full grid place-content-center"
+          className="contact sm:row-span-3 lg:row-span-4 col-span-1 border-l-2 border-b-2 border-white w-full grid place-content-center"
         >
           <ContactForm />
         </div>

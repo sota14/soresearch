@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Modal.module.scss";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 type Props = {
   close: (e: any) => void;
@@ -9,10 +10,10 @@ type Props = {
 const Menu: React.FC<Props> = (props) => {
   return (
     <>
-      <div className={styles.modal}>
+      <div className={styles.menu}>
         <div>
           <section className={styles.panel}>
-            <div className="menu-wrap grid grid-rows-2 grid-cols-2">
+            <div className="menu-wrap grid gap-6 font-bold xs:text-center">
               <Link href="/" onClick={props.close}>
                 TOP
               </Link>
