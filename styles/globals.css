@@ -45,6 +45,9 @@ html.wf-active {
   -webkit-backface-visibility:visible;
   backface-visibility:visible;
 }
+object {
+  visibility: visible;
+}
 
 /* body {
   color: rgb(var(--foreground-rgb));

@@ -77,7 +77,7 @@ const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
             />
           </div>
         </div>
-        <div className="overflow-x-hidden overflow-y-scroll pt-8">
+        <div className="overflow-x-hidden md:overflow-y-scroll pt-8">
           {/* タイトル */}
           <h1 className="mb-1 text-4xl font-bold z-20">
             {getText(page.properties.name.title)}
