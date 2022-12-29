@@ -174,9 +174,9 @@ SO RESEARCH
         </div>
         <div className="form-item category">
           <label>
-            <span className="" data-name="conactType">
+            <span className="" data-name="contactType">
               <select
-                name="conactType"
+                name="contactType"
                 className="p-2 w-full"
                 aria-required="true"
                 aria-invalid="false"
