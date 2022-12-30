@@ -35,7 +35,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         transition={{
           duration: 1,
         }}
-        className="pt-12 h-screen "
+        className="pt-12 md:h-screen "
       >
         {children}
       </motion.main>
