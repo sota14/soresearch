@@ -55,6 +55,7 @@ select, input, textarea {
   color: var(--color1-def);
   background-color: transparent;
   border: 1px solid var(--color1-def);
+  border-radius: 0px;
     -webkit-appearance: none;
     appearance: none;
 }
