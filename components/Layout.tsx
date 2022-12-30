@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import { LayoutProps } from "../types/types";
 import Menu from "./Menu";
 import { motion } from "framer-motion";
+import Cube from "./Cube";
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);

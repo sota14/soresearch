@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import { LayoutProps } from "../types/types";
 import { useState } from "react";
 import Modal from "./Modal";
+import { motion, useAnimation } from "framer-motion";
 
 type FormData = {
   name: string;
@@ -25,6 +26,7 @@ const ContactForm: FC = () => {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [modalText, setModalText] = useState("");
+  const controls = useAnimation();
 
   const closeModalHandler = (e: any) => {
     setIsOpenModal(false);
@@ -64,6 +66,7 @@ const ContactForm: FC = () => {
       setIsOpenModal(true);
       return;
     }
+    controls.start({ y: [0, -1000] });
     const res = await fetch("/api/send", {
       body: JSON.stringify({
         message: `${formData.name}様 
@@ -73,13 +76,13 @@ const ContactForm: FC = () => {
 フォームへの記載に誤りがないか、今一度ご確認ください。
 
 【入力内容】
-氏名：${formData.name} 
-会社名：${formData.company} 
-メールアドレス：${formData.email} 
-電話番号：${formData.tel} 
-問い合わせの種別：${formData.contactType} 
-お問い合わせ内容：
- ${formData.message}
+■氏名：${formData.name} 
+■会社名：${formData.company} 
+■メールアドレス：${formData.email} 
+■電話番号：${formData.tel} 
+■問い合わせの種別：${formData.contactType} 
+■お問い合わせ内容：
+${formData.message}
 
 修正点や追加でのご質問などございましたらこちらのメールにご返信ください。
 内容確認のうえ3営業日以内に回答いたします。
@@ -109,9 +112,9 @@ SO RESEARCH
   };
 
   return (
-    <div className="bg-white m-16 h-max">
+    <motion.div animate={controls} className="bg-white m-16 h-max">
       <h2 className="font-bold text-4xl futura p-4 pb-0">CONTACT</h2>
-      <div className="p-6 grid gap-6 max-w-md mx-auto">
+      <div className="p-6 grid gap-6 max-w-md mx-auto xs:w-[90vw] sm:w-[40vw]">
         <div className="form-item">
           <label>
             <span className="" data-name="name">
@@ -172,18 +175,20 @@ SO RESEARCH
             </span>
           </label>
         </div>
-        <div className="form-item category">
-          <label>
+        <div className="form-item category  selectBox">
+          <label className="">
             <span className="" data-name="contactType">
               <select
                 name="contactType"
-                className="p-2 w-full"
+                className={`${
+                  formData.contactType ? "formValid" : ""
+                } p-2 w-full`}
                 aria-required="true"
                 aria-invalid="false"
                 placeholder="お問い合わせ種別"
                 onChange={handleChangeForm}
               >
-                <option>お問い合わせ種別</option>
+                <option value={""}>お問い合わせ種別</option>
                 <option value="制作に関するご相談">制作に関するご相談</option>
                 <option value="その他お問い合わせ">その他お問い合わせ</option>
               </select>
@@ -195,7 +200,7 @@ SO RESEARCH
             <span className="" data-name="message">
               <textarea
                 name="message"
-                className="p-2 w-full"
+                className="p-2 w-full h-40"
                 aria-required="true"
                 aria-invalid="false"
                 placeholder="お問い合わせ内容を入力してください。"
@@ -204,18 +209,20 @@ SO RESEARCH
             </span>
           </label>
         </div>
-        <button
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.08 }}
           className="bg-def2 text-white py-2 px-5 w-max mx-auto"
           onClick={sendForm}
         >
           送信
-        </button>
+        </motion.button>
       </div>
 
       {isOpenModal && (
         <Modal close={closeModalHandler} modalText={modalText}></Modal>
       )}
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React, { FC } from "react";
 import { LayoutProps } from "../types/types";
+import Cube from "./Cube";
 
 const Links: FC = () => {
   return (
-    <div className="m-16 grid grid-rows-3 gap-4">
+    <div className="m-16 grid grid-rows-3 gap-4 relative">
       <div>
         <h2 className="font-bold text-xl futura">EMAIL</h2>
         <span>soresearching@gmail.com</span>

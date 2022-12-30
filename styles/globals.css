@@ -102,7 +102,7 @@ input:focus::-moz-placeholder { color:transparent!important; }
 :placeholder-shown{
 	box-shadow: 0 0 0px 1000px #FFF inset;
 }
-.form-item :valid{
+.form-item input:valid, .form-item textarea:valid{
   background-color:var(--color1-def);
   color: #fff !important;
 }
@@ -110,6 +110,37 @@ input:focus::-moz-placeholder { color:transparent!important; }
   display:none;
 }
 
+/* セレクトのUI */
+.formValid{
+  background-color:var(--color1-def)!important;
+  color: #fff !important;
+}
+/* セレクトボックスの矢印デザイン変更 */
+.selectBox::before {
+  border-bottom: 4.5px solid var(--color1-def);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top:.75rem;
+  width: 0;
+}
+.selectBox::after {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4.5px solid var(--color1-def);
+  content: "";
+  position: absolute;
+  right:1rem;
+  bottom:.75rem;
+  width: 0;
+}
+.selectBox{
+  position: relative;
+}
+
+/* 特殊フォント */
 .futura{
   font-family: 'futura-pt', sans-serif;
 }

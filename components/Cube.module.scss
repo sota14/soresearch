@@ -1,0 +1,21 @@
+.cubeContainer {
+    perspective: 800px;
+    margin-left: auto;
+    margin-right: auto;
+
+    > div {
+      position: relative;
+      transform-style: preserve-3d;
+    
+     > div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg-def);
+        opacity: 0.6;
+        border: 1px solid var(--color1-def);
+        // translate: 100px;
+        // transform-style: inherit;
+      }
+    }
+}

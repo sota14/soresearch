@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 import Introduction from "../components/Introduction";
 import Links from "../components/Links";
 import ContactForm from "../components/ContactForm";
+import Cube from "../components/Cube";
 
 const About: NextPage = () => {
   return (
@@ -16,7 +17,11 @@ const About: NextPage = () => {
         >
           <Introduction />
         </div>
-        <div id="links" className="link border-b-2 border-white lg:row-span-2">
+        <div
+          id="links"
+          className="link border-b-2 border-white lg:row-span-2 relative"
+        >
+          <Cube width={80} height={80} />
           <Links />
         </div>
         <div
