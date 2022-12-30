@@ -41,7 +41,7 @@ const Card: FC<CardProps> = ({ page }) => {
           </h2>
           {/* 制作年 */}
           <div className="mb-1 text-xl z-20">
-            {getYearMonth(page.properties.published.date)}
+            {getYearMonth(page.properties.workDate.date)}
           </div>
           {/* タグ */}
           <div className="mb-6 z-20 md:mt-4">

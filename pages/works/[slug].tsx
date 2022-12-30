@@ -3,11 +3,7 @@ import Layout from "../../components/Layout";
 import { WorkDetailProps, Params } from "../../types/types";
 import NotionBlocks from "../../components/renderer/NotionBlocks";
 import Image from "next/image";
-import {
-  fetchAllBlocksByPageId,
-  fetchPageByPageId,
-  fetchPages,
-} from "../../utils/notion";
+import { fetchAllBlocksByPageId, fetchPages } from "../../utils/notion";
 import {
   getCover,
   getDate,
@@ -16,7 +12,6 @@ import {
   getText,
   getYearMonth,
 } from "../../utils/property";
-import Link from "next/link";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { results } = await fetchPages({});
@@ -56,7 +51,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
   return (
     <Layout>
-      <div className="xs:mx-2 sm:mx-6 grid md:grid-cols-3 overflow-y-scroll h-full">
+      <div className="xs:mx-2 sm:mx-6 grid md:grid-cols-3 overflow-y-scroll md:h-full">
         {/* 画像 */}
         <div className="bg-fixed md:col-span-2 md:m-8">
           {/* <img
@@ -84,7 +79,7 @@ const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
           </h1>
           {/* 制作年 */}
           <div className="mb-1 text-xl z-20">
-            {getYearMonth(page.properties.published.date)}
+            {getYearMonth(page.properties.workDate.date)}
           </div>
           {/* タグ */}
           <div className="mb-6 z-20 md:mt-4">
