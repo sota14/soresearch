@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
   return (
     <Layout>
-      <div className="xs:mx-2 sm:mx-6 grid md:grid-cols-3 h-full">
+      <div className="xs:mx-2 sm:mx-6 grid md:grid-cols-3 overflow-y-scroll h-full">
         {/* 画像 */}
         <div className="bg-fixed md:col-span-2 md:m-8">
           {/* <img
@@ -77,7 +77,7 @@ const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
             />
           </div>
         </div>
-        <div className="overflow-x-hidden md:overflow-y-scroll pt-8">
+        <div className="overflow-x-hidden xs:h-max md:overflow-y-scroll pt-8">
           {/* タイトル */}
           <h1 className="mb-1 text-4xl font-bold z-20">
             {getText(page.properties.name.title)}
