@@ -1,5 +1,5 @@
 import { ParsedUrlQuery } from "querystring";
-import { ReactNode,Dispatch, SetStateAction } from "react";
+import { ReactNode, Dispatch, SetStateAction } from "react";
 // import { BlockType } from "notion-block-renderer";
 
 export type LayoutProps = {
@@ -16,7 +16,6 @@ export type LayoutProps = {
 //   content: string;
 // };
 
-
 export type CardProps = { page: PageType };
 export type WorkDetailProps = {
   page: PageType;
@@ -31,22 +30,26 @@ export type ArticleProps = {
   recommends: PageType[];
 };
 export type ArticleMetaProps = CardProps;
-export type ChildBlocksProps = {blockId: string};
+export type ChildBlocksProps = { blockId: string };
 
-export type IndexProps = { pages: PageType[]; nextCur: string; recommends: PageType[] };
+export type IndexProps = {
+  pages: PageType[];
+  nextCur: string;
+  recommends: PageType[];
+};
 
 export type BlockProps = { block: BlockType };
 
-export type TocProps = { 
+export type TocProps = {
   blocks: BlockType[];
   showToc: boolean;
-  setShowToc:  Dispatch<SetStateAction<boolean>>;
+  setShowToc: Dispatch<SetStateAction<boolean>>;
 };
 
 export type Params = ParsedUrlQuery & {
   slug?: string;
   tags?: string;
-  nextCur? : string;
+  nextCur?: string;
   // pageId: string;
 };
 
@@ -75,6 +78,7 @@ export type PropertyType = {
   author: { rich_text: RichTextType[] };
   slug: { rich_text: RichTextType[] };
   published: { date: { start: string } };
+  workDate: { date: { start: string } };
   isPublic: { checkbox: boolean };
   tags: { multi_select: [{ name: string }] };
 };
@@ -85,7 +89,6 @@ export type PageType = {
   // properties: Record<string, any>;
   properties: PropertyType;
 };
-
 
 // export type BlockType = {
 //   type: string;
@@ -134,7 +137,7 @@ export enum BlockEnum {
   video = "video",
 
   //   to_do = "to_do",
-    toggle = "toggle",
+  toggle = "toggle",
   //   child_page = "child_page",
   //   child_database = "child_database",
   //   embed = "embed",
@@ -142,7 +145,7 @@ export enum BlockEnum {
   //   pdf = "pdf",
   //   bookmark = "bookmark",
   //   equation = "equation",
-    divider = "divider",
+  divider = "divider",
   //   table_of_contents = "table_of_contents",
   //   link_to_page = "link_to_page",
   //   table = "table",
@@ -185,14 +188,13 @@ type CalloutBlockType = {
   children: BlockType[];
 };
 
-type DividerBlockType = {
-};
+type DividerBlockType = {};
 
 type ToggleBlockType = {
   rich_text: RichTextType[];
   color: string;
   children: BlockType[];
-}
+};
 
 // type ImageBlockType = {
 //   caption: RichTextType[];
@@ -261,8 +263,8 @@ type NumberedListItem = BaseBlock & {
   type: "numbered_list_item";
   numbered_list_item: TextBlockType;
 };
-type Divider = BaseBlock & {type: "divider"; divider: DividerBlockType};
-type Toggle = BaseBlock & {type: "toggle"; toggle: ToggleBlockType};
+type Divider = BaseBlock & { type: "divider"; divider: DividerBlockType };
+type Toggle = BaseBlock & { type: "toggle"; toggle: ToggleBlockType };
 
 export type BlockType =
   | Paragraph
