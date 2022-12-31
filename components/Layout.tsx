@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import { LayoutProps } from "../types/types";
 import Menu from "./Menu";
 import { motion } from "framer-motion";
+import Cube from "./Cube";
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -14,9 +15,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     <div>
       <header className="fixed t-0 h-12 flex justify-between px-2 border-b-2 border-white w-screen z-40 bg-def bg-none">
         <Link href="/" className="flex items-center ml-2">
-          <h1 className="header-site-title pt-1 xs:text-lg text-4xl avenir font-extrabold">
+          <span className="header-site-title pt-1 xs:text-lg text-4xl avenir font-extrabold">
             SO RESEARCH
-          </h1>
+          </span>
         </Link>
         <button
           className="globalmenu m-2"
@@ -35,7 +36,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         transition={{
           duration: 1,
         }}
-        className="pt-12 md:h-screen "
+        className="pt-12 md:h-screen"
       >
         {children}
       </motion.main>

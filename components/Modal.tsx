@@ -1,32 +1,36 @@
 import React, { useState } from "react";
 import styles from "./Modal.module.scss";
+import { motion, useAnimation } from "framer-motion";
 
 type Props = {
   close: (e: any) => void;
-  modalText:string;
+  modalText: string;
 };
 
 const Modal: React.FC<Props> = (props) => {
-
+  const unmount = useAnimation();
+  const clickOk = () => {
+    unmount
+      .start({
+        opacity: 0,
+        transition: { duration: 0.3 },
+      })
+      .then(props.close);
+  };
   return (
     <>
-      <div
-        className={styles.modal}
-      >
+      <motion.div className={styles.modal} animate={unmount}>
         <div>
-          
-            <section 
-            className={styles.panel}
-            >
+          <section className={styles.panel}>
             <div>{props.modalText}</div>
             <footer>
-                <button type="button" onClick={props.close}>
+              <button type="button" onClick={clickOk}>
                 OK
-                </button>
+              </button>
             </footer>
-            </section>
+          </section>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

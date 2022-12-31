@@ -3,7 +3,8 @@ import { BlockType } from "../types/types";
 import { useRouter } from "next/router";
 
 const notion = new Client({ auth: process.env.NOTION_KEY as string });
-const DATABASE_ARTICLE_ID = process.env.NOTION_DATABASE_ARTICLE_ID as string;
+const DATABASE_WORKS_ID = process.env.NOTION_DATABASE_WORKS_ID as string;
+const DATABASE_BLOG_ID = process.env.NOTION_DATABASE_BLOG_ID as string;
 
 export const fetchPages = async ({
   slug,
@@ -46,7 +47,7 @@ export const fetchPages = async ({
   }
 
   return await notion.databases.query({
-    database_id: DATABASE_ARTICLE_ID,
+    database_id: DATABASE_WORKS_ID,
     filter: {
       and: and,
     },
@@ -106,7 +107,7 @@ export const searchPages = async ({
   }
 
   return await notion.databases.query({
-    database_id: DATABASE_ARTICLE_ID,
+    database_id: DATABASE_WORKS_ID,
     filter: {
       and: and,
     },
@@ -160,4 +161,123 @@ export const fetchPageByPageId = async (pageId: string) => {
   const response = await notion.pages.retrieve({ page_id: pageId });
   console.log(response);
   return response;
+};
+
+export const fetchBlogPages = async ({
+  slug,
+  tag,
+}: {
+  slug?: string;
+  tag?: string;
+}) => {
+  const and: any = [
+    {
+      property: "isPublic",
+      checkbox: {
+        equals: true,
+      },
+    },
+    {
+      property: "slug",
+      rich_text: {
+        is_not_empty: true,
+      },
+    },
+  ];
+
+  if (slug) {
+    and.push({
+      property: "slug",
+      rich_text: {
+        equals: slug,
+      },
+    });
+  }
+
+  if (tag) {
+    and.push({
+      property: "tags",
+      multi_select: {
+        contains: tag,
+      },
+    });
+  }
+
+  return await notion.databases.query({
+    database_id: DATABASE_BLOG_ID,
+    filter: {
+      and: and,
+    },
+    sorts: [
+      {
+        property: "published",
+        direction: "descending",
+      },
+    ],
+  });
+};
+
+export const fetchBlogReccomends = async ({
+  tag,
+  tags,
+}: {
+  tag?: string;
+  tags?: string[];
+}) => {
+  const and: any = [
+    {
+      property: "isPublic",
+      checkbox: {
+        equals: true,
+      },
+    },
+    {
+      property: "slug",
+      rich_text: {
+        is_not_empty: true,
+      },
+    },
+    {
+      property: "reccomend",
+      checkbox: {
+        equals: true,
+      },
+    },
+  ];
+
+  if (tag) {
+    and.push({
+      property: "tags",
+      multi_select: {
+        contains: tag,
+      },
+    });
+  }
+
+  if (tags) {
+    const or: any = [{}];
+    tags.forEach((tag) => {
+      or.push({
+        property: "tags",
+        multi_select: {
+          contains: tag,
+        },
+      });
+    });
+    and.push({ or: or });
+  }
+
+  return await notion.databases.query({
+    database_id: DATABASE_BLOG_ID,
+    filter: {
+      and: and,
+    },
+    sorts: [
+      {
+        property: "published",
+        direction: "descending",
+      },
+    ],
+    page_size: 12,
+  });
 };
