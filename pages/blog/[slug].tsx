@@ -1,9 +1,13 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Layout from "../../components/Layout";
-import { WorkDetailProps, Params } from "../../types/types";
+import { WorkDetailProps, Params, PageType } from "../../types/types";
 import NotionBlocks from "../../components/renderer/NotionBlocks";
 import Image from "next/image";
-import { fetchAllBlocksByPageId, fetchBlogPages } from "../../utils/notion";
+import {
+  fetchAllBlocksByPageId,
+  fetchBlogPages,
+  fetchBlogReccomends,
+} from "../../utils/notion";
 import {
   getCover,
   getDate,
@@ -12,6 +16,8 @@ import {
   getText,
   getYearMonth,
 } from "../../utils/property";
+import Cube from "../../components/Cube";
+import BlogCard from "../../components/BlogCard";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { results } = await fetchBlogPages({});
@@ -30,8 +36,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { slug } = ctx.params as Params;
-  // const recommends = await fetchPages({}).then();
-
+  const recommends = await fetchBlogReccomends({}).then();
   const { results } = await fetchBlogPages({ slug: slug });
   const page = results[0];
   const pageId = page ? page.id : "";
@@ -42,16 +47,24 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       page: page,
       pageId: pageId ? pageId : null,
       blocks: blocks,
-      // recommends: recommends ? recommends.results ? recommends.results : [] :[]
+      recommends: recommends
+        ? recommends.results
+          ? recommends.results
+          : []
+        : [],
     },
     revalidate: 10,
   };
 };
 
-const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
+const WorkDetail: NextPage<WorkDetailProps> = ({
+  page,
+  blocks,
+  recommends,
+}) => {
   return (
     <Layout>
-      <div className="xs:mx-2 sm:mx-6 grid md:grid-cols-6 overflow-y-scroll md:h-full">
+      <div className="sm:px-6 grid md:grid-cols-3 overflow-y-scroll md:h-full">
         {/* 画像 */}
         {/* <div className="bg-fixed md:col-span-2 md:m-8"> */}
         {/* <img
@@ -72,7 +85,7 @@ const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
             />
           </div> */}
         {/* </div> */}
-        <div className="overflow-x-hidden xs:h-max md:col-span-4 md:overflow-y-scroll pt-8">
+        <div className="overflow-x-hidden xs:h-max md:overflow-y-scroll pt-8 px-8 xs:col-span-1 col-span-2 xs:w-auto text-slate-900">
           {/* タイトル */}
           <h1 className="mb-1 text-4xl font-bold z-20">
             {getText(page.properties.name.title)}
@@ -93,6 +106,18 @@ const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
           <section className="z-20">
             <NotionBlocks blocks={blocks} isCodeHighlighter={true} />
           </section>
+        </div>
+        <div className="">
+          <aside className="pickup  h-[450px] my-8 mx-8">
+            <div className="text-center font-bold shadow-md border-t border-x border-black">
+              <span className="m-2">PICKUP!</span>
+            </div>
+            <div className="h-full border-black border overflow-hidden overflow-y-scroll">
+              {recommends.map((page, index) => (
+                <BlogCard key={index} page={page} />
+              ))}
+            </div>
+          </aside>
         </div>
       </div>
     </Layout>

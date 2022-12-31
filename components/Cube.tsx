@@ -42,22 +42,22 @@ const Cube: React.FC<CubeProps> = ({ height, width }) => {
         >
           {/* BACK */}
         </div>
-        <div style={{ transform: `rotateX(90deg) translateZ(${width / 2}px)` }}>
+        <div
+          style={{ transform: `rotateX(90deg) translateZ(${height / 2}px)` }}
+        >
           {/* RIGHT */}
         </div>
         <div
-          style={{ transform: `rotateX(270deg) translateZ(${width / 2}px)` }}
+          style={{ transform: `rotateX(270deg) translateZ(${height / 2}px)` }}
         >
           {/* LEFT */}
         </div>
         <div
-          style={{ transform: `rotateY(270deg) translateZ(${height / 2}px)` }}
+          style={{ transform: `rotateY(270deg) translateZ(${width / 2}px)` }}
         >
           {/* TOP */}
         </div>
-        <div
-          style={{ transform: `rotateY(90deg) translateZ(${height / 2}px)` }}
-        >
+        <div style={{ transform: `rotateY(90deg) translateZ(${width / 2}px)` }}>
           {/* BOTTOM */}
         </div>
       </div>

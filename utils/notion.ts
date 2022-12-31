@@ -216,3 +216,68 @@ export const fetchBlogPages = async ({
     ],
   });
 };
+
+export const fetchBlogReccomends = async ({
+  tag,
+  tags,
+}: {
+  tag?: string;
+  tags?: string[];
+}) => {
+  const and: any = [
+    {
+      property: "isPublic",
+      checkbox: {
+        equals: true,
+      },
+    },
+    {
+      property: "slug",
+      rich_text: {
+        is_not_empty: true,
+      },
+    },
+    {
+      property: "reccomend",
+      checkbox: {
+        equals: true,
+      },
+    },
+  ];
+
+  if (tag) {
+    and.push({
+      property: "tags",
+      multi_select: {
+        contains: tag,
+      },
+    });
+  }
+
+  if (tags) {
+    const or: any = [{}];
+    tags.forEach((tag) => {
+      or.push({
+        property: "tags",
+        multi_select: {
+          contains: tag,
+        },
+      });
+    });
+    and.push({ or: or });
+  }
+
+  return await notion.databases.query({
+    database_id: DATABASE_BLOG_ID,
+    filter: {
+      and: and,
+    },
+    sorts: [
+      {
+        property: "published",
+        direction: "descending",
+      },
+    ],
+    page_size: 12,
+  });
+};

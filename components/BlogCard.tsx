@@ -42,15 +42,15 @@ const BlogCard: FC<CardProps> = ({ page }) => {
         </div> */}
         <div className="m-2 text-left">
           {/* タイトル */}
-          <h2 className="mb-1 text-xl font-bold z-20">
+          <h2 className="leading-tight text-xl font-bold">
             {getText(page.properties.name.title)}
           </h2>
           {/* 制作年 */}
-          <div className="mb-1 text-xl z-20">
+          <div className="text-xl z-20">
             {getYearMonth(page.properties.published.date)}
           </div>
           {/* タグ */}
-          <div className="mb-6 z-20 md:mt-4">
+          <div className="z-20">
             {getMultiSelect(page.properties.tags.multi_select).map(
               (tag: string, index: number) => (
                 <span className="tag md:p-2" key={index}>{`#${tag} `}</span>

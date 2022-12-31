@@ -36,6 +36,9 @@ const Menu: React.FC<Props> = (props) => {
               <Link href="/about#contact" onClick={clickLink}>
                 CONTACT
               </Link>
+              <Link href="/blog" onClick={clickLink}>
+                BLOG
+              </Link>
             </div>
           </section>
         </motion.div>
