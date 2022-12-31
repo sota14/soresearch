@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import {
   getCover,
   getDate,
+  getLocalImage,
   getMultiSelect,
   getText,
   getYearMonth,
@@ -21,7 +22,11 @@ const Card: FC<CardProps> = ({ page }) => {
       >
         <div className="shadow-lg grid mx-auto my-4 md:my-0 overflow-hidden max-w-sm bg-white">
           {/* image */}
-          <div className="">
+          <img
+            className="mx-auto"
+            src={getLocalImage(page.properties.slug.rich_text)}
+          ></img>
+          {/* <div className="">
             {" "}
             <Image
               className="w-full static w-full h-auto"
@@ -32,7 +37,7 @@ const Card: FC<CardProps> = ({ page }) => {
               height={180}
               quality={50}
             />
-          </div>
+          </div> */}
         </div>
         <div className="m-2 text-center">
           {/* タイトル */}

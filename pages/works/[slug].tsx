@@ -54,12 +54,12 @@ const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
       <div className="xs:mx-2 sm:mx-6 grid md:grid-cols-3 overflow-y-scroll md:h-full">
         {/* 画像 */}
         <div className="bg-fixed md:col-span-2 md:m-8">
-          {/* <img
+          <img
             className="mx-auto"
             src={getLocalImage(page.properties.slug.rich_text)}
-          ></img> */}
+          ></img>
           {/* image */}
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             {" "}
             <Image
               className="static justify-center"
@@ -70,7 +70,7 @@ const WorkDetail: NextPage<WorkDetailProps> = ({ page, blocks, pageId }) => {
               height={360}
               quality={50}
             />
-          </div>
+          </div> */}
         </div>
         <div className="overflow-x-hidden xs:h-max md:overflow-y-scroll pt-8">
           {/* タイトル */}

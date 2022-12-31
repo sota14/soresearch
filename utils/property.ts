@@ -19,7 +19,7 @@ export const getCover = (cover: PageType["cover"]) => {
 
 export const getLocalImage = (slug: RichTextType[]) => {
   const txt = getText(slug);
-  return `/works/${txt}.jpg`;
+  return `/works/${txt}.png`;
 };
 
 export const getDate = (date: { start: string }) => {
