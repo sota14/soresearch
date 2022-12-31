@@ -51,6 +51,43 @@ a {
   text-decoration: none;
 }
 
+@layer base {
+  h1 {
+    color:inherit;
+    @apply font-semibold leading-tight text-4xl mt-0 mb-2;
+  }
+  h2 {
+    color:inherit;
+    @apply font-semibold leading-tight text-3xl mt-0 mb-2;
+  }
+  h3 {
+    color:inherit;
+    @apply font-semibold leading-tight text-2xl mt-0 mb-2;
+  }
+  p {
+    color:inherit;
+    @apply font-light leading-relaxed text-base mt-0 mb-4;
+  }
+}
+
+h1,h2,h3,p {
+  color: inherit;
+}
+
+
+h1 {
+  @apply font-semibold leading-tight text-4xl mt-0 mb-2;
+}
+h2 {
+  @apply font-semibold leading-tight text-3xl mt-0 mb-2;
+}
+h3 {
+  @apply font-semibold leading-tight text-2xl mt-0 mb-2;
+}
+p {
+  @apply font-light leading-relaxed text-base mt-0 mb-4;
+}
+
 select, input, textarea {
   color: var(--color1-def);
   background-color: transparent;

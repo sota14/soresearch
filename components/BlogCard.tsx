@@ -12,21 +12,21 @@ import {
   getYearMonth,
 } from "../utils/property";
 
-const Card: FC<CardProps> = ({ page }) => {
+const BlogCard: FC<CardProps> = ({ page }) => {
   return (
-    <motion.div whileHover={{ scale: 1.05 }}>
+    <motion.div whileHover={{ scale: 1.05 }} className="shadow-md m-5 border-1">
       <Link
-        href={{ pathname: `/works/${getText(page.properties.slug.rich_text)}` }}
-        as={`/works/${getText(page.properties.slug.rich_text)}`}
+        href={{ pathname: `/blog/${getText(page.properties.slug.rich_text)}` }}
+        as={`/blog/${getText(page.properties.slug.rich_text)}`}
         className=""
       >
-        <div className="shadow-lg grid mx-auto my-4 md:my-0 overflow-hidden max-w-sm bg-white">
-          {/* image */}
-          {/* <img
-            className="mx-auto"
-            src={getLocalImage(page.properties.slug.rich_text)}
-          ></img> */}
-          <div className="">
+        {/* <div className="shadow-lg grid mx-auto my-4 md:my-0 overflow-hidden max-w-sm bg-white">
+            {/* image */}
+        {/* <img
+              className="mx-auto"
+              src={getLocalImage(page.properties.slug.rich_text)}
+            ></img> */}
+        {/*<div className="">
             {" "}
             <Image
               className="w-full static w-full h-auto"
@@ -39,15 +39,15 @@ const Card: FC<CardProps> = ({ page }) => {
               quality={50}
             />
           </div>
-        </div>
-        <div className="m-2 text-center">
+        </div> */}
+        <div className="m-2 text-left">
           {/* タイトル */}
           <h2 className="mb-1 text-xl font-bold z-20">
             {getText(page.properties.name.title)}
           </h2>
           {/* 制作年 */}
           <div className="mb-1 text-xl z-20">
-            {getYearMonth(page.properties.workDate.date)}
+            {getYearMonth(page.properties.published.date)}
           </div>
           {/* タグ */}
           <div className="mb-6 z-20 md:mt-4">
@@ -63,4 +63,4 @@ const Card: FC<CardProps> = ({ page }) => {
   );
 };
 
-export default Card;
+export default BlogCard;
