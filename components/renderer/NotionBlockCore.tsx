@@ -198,6 +198,16 @@ const NotionBlockCore: FC<
           )}
         </details>
       );
+    case "embed":
+      return (
+        <div className="embed relative before:pt-[56.25%] w-full h-98 mb-6">
+          <embed
+            src={block[block.type].url}
+            width="100%"
+            className="h-[30rem]"
+          />
+        </div>
+      );
     default:
       console.log(`This block type not yet configured`);
       console.log(block);
