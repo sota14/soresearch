@@ -90,13 +90,6 @@ export type PageType = {
   properties: PropertyType;
 };
 
-// export type BlockType = {
-//   type: string;
-//   heading_1: { rich_text: RichTextType[] };
-//   heading_2: { rich_text: RichTextType[] };
-//   paragraph: { rich_text: RichTextType[] };
-// };
-
 //renderer----------------------------------------------
 // import type { ListBlockChildrenResponse } from "@notionhq/client/build/src/api-endpoints.d";
 
@@ -107,20 +100,6 @@ export enum AnnotationEnum {
   underline = "underline",
   color = "color",
 }
-
-// https://developers.notion.com/reference/rich-text
-// export type RichTextType = {
-//   plain_text: string;
-//   href: string | null;
-//   annotations: AnnotationType;
-//   type: string;
-//   text: {
-//     content: string;
-//     link: {
-//       url: string;
-//     } | null;
-//   };
-// };
 
 // https://developers.notion.com/reference/block
 export enum BlockEnum {
@@ -140,7 +119,7 @@ export enum BlockEnum {
   toggle = "toggle",
   //   child_page = "child_page",
   //   child_database = "child_database",
-  //   embed = "embed",
+  embed = "embed",
   //   file = "file",
   //   pdf = "pdf",
   //   bookmark = "bookmark",
@@ -196,6 +175,11 @@ type ToggleBlockType = {
   children: BlockType[];
 };
 
+type EmbedBlockType = {
+  caption: string[];
+  url: string;
+};
+
 // type ImageBlockType = {
 //   caption: RichTextType[];
 //   file: {
@@ -217,6 +201,7 @@ export type BlockTypeName =
   | "quote"
   | "divider"
   | "toggle"
+  | "embed"
   | "bulleted_list_item"
   | "numbered_list_item";
 
@@ -265,6 +250,7 @@ type NumberedListItem = BaseBlock & {
 };
 type Divider = BaseBlock & { type: "divider"; divider: DividerBlockType };
 type Toggle = BaseBlock & { type: "toggle"; toggle: ToggleBlockType };
+type Embed = BaseBlock & { type: "embed"; embed: EmbedBlockType };
 
 export type BlockType =
   | Paragraph
@@ -277,6 +263,7 @@ export type BlockType =
   | Video
   | Callout
   | Toggle
+  | Embed
   | Quote
   | BulletedListItem
   | NumberedListItem

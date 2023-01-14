@@ -141,6 +141,20 @@ export const fetchAllBlocksByPageId: (pageId: string) => Promise<{
             console.log("childBlock");
             console.log(childBlock);
             data.push({ ...block, childBlock });
+          } else if (block.type.match("link_to_page")) {
+            console.log(`
+            l
+            i
+            n
+            k
+            `);
+            const childBlock: BlockType[] = await fetchAllBlocksByPageId(
+              block[block.type].page_id
+            ).then();
+            // (await fetchAllBlocksByPageId(block.id).then()).results;
+            console.log("childBlock");
+            console.log(childBlock);
+            data.push({ ...block, childBlock });
           } else {
             data.push(block);
           }
